@@ -9,13 +9,11 @@ public class ImportReceipt {
 	private double totalAmount;
 	private int createdBy;
 
-	// Chứa danh sách chi tiết phiếu nhập
 	private List<ImportReceiptDetail> details;
 
 	public ImportReceipt() {
 	}
 
-	// Getters and Setters
 	public int getImportId() {
 		return importId;
 	}

@@ -97,8 +97,6 @@ public class EmployeeForm extends JFrame {
 		tblEmployee.setRowHeight(25);
 		add(new JScrollPane(tblEmployee), BorderLayout.CENTER);
 
-		// Bạn có thể thêm các sự kiện Add/Update/Delete gọi đến EmployeeDAO tương tự
-		// CategoryForm
 	}
 
 	private void loadData() {

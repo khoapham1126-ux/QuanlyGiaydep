@@ -4,9 +4,9 @@ import java.awt.*;
 import javax.swing.*;
 
 public class MainForm extends JFrame {
-	// Các nút chức năng
 	private JButton btnProduct, btnCategory, btnSupplier, btnInventory;
-	private JButton btnEmployee, btnImport, btnReport, btnLogout;
+        private JButton btnEmployee, btnImport, btnReport, btnLogout;
+        private JButton btnCustomer, btnSell, btnInvoice;
 
 	public MainForm() {
 		initComponents();
@@ -15,7 +15,7 @@ public class MainForm extends JFrame {
 
 	private void initComponents() {
 		setTitle("Hệ thống Quản lý Giày dép");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Tắt MainForm là tắt app
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		setSize(800, 500);
 		setLayout(new BorderLayout(10, 10));
 
@@ -25,11 +25,9 @@ public class MainForm extends JFrame {
 		lblTitle.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 		add(lblTitle, BorderLayout.NORTH);
 
-		// Chứa các nút bấm
 		JPanel pnCenter = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30));
 		pnCenter.setBorder(BorderFactory.createTitledBorder("Chọn chức năng"));
 
-		// Khởi tạo các nút
 		btnProduct = new JButton("Quản lý Sản phẩm");
 		btnCategory = new JButton("Quản lý Danh mục");
 		btnSupplier = new JButton("Quản lý Nhà cung cấp");
@@ -38,11 +36,15 @@ public class MainForm extends JFrame {
 		btnImport = new JButton("Nhập Kho");
 		btnReport = new JButton("Báo Cáo Thống Kê");
 		btnLogout = new JButton("Đăng xuất");
+                btnCustomer = new JButton("Quản lý Khách hàng");
+                btnSell = new JButton("Bán Hàng");
+                btnInvoice = new JButton("Lịch sử Hóa đơn");
 
-		// Đặt kích thước cho nút
 		Dimension btnSize = new Dimension(200, 45);
-		JButton[] buttons = { btnProduct, btnCategory, btnSupplier, btnInventory, btnEmployee, btnImport, btnReport,
-				btnLogout };
+		JButton[] buttons = { btnProduct, btnCategory, btnSupplier, btnInventory,
+                                    btnEmployee, btnImport, btnReport,
+                                    btnCustomer, btnSell, btnInvoice,
+                                    btnLogout };
 		for (JButton btn : buttons) {
 			btn.setPreferredSize(btnSize);
 			pnCenter.add(btn);
@@ -50,25 +52,23 @@ public class MainForm extends JFrame {
 
 		add(pnCenter, BorderLayout.CENTER);
 
-		// ======= SỰ KIỆN LINK CÁC TRANG =======
-		// Khoa
 		btnProduct.addActionListener(e -> new ProductForm().setVisible(true));
 		btnCategory.addActionListener(e -> new CategoryForm().setVisible(true));
 		btnSupplier.addActionListener(e -> new SupplierForm().setVisible(true));
 		btnInventory.addActionListener(e -> new InventoryForm().setVisible(true));
-
-		// Việt
 		btnEmployee.addActionListener(e -> new EmployeeForm().setVisible(true));
 		btnImport.addActionListener(e -> new ImportForm().setVisible(true));
 		btnReport.addActionListener(e -> new ReportForm().setVisible(true));
+                btnCustomer.addActionListener(e -> new CustomerForm().setVisible(true));
+                btnSell.addActionListener(e -> new SellForm().setVisible(true));
+                btnInvoice.addActionListener(e -> new InvoiceForm().setVisible(true));
 
-		// Đăng xuất:
 		btnLogout.addActionListener(e -> {
 			int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất?", "Xác nhận",
 					JOptionPane.YES_NO_OPTION);
 			if (confirm == JOptionPane.YES_OPTION) {
 				new LoginForm().setVisible(true);
-				this.dispose(); // Đóng form hiện tại
+				this.dispose(); 
 			}
 		});
 	}

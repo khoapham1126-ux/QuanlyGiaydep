@@ -8,7 +8,6 @@ import java.util.List;
 
 public class EmployeeDAO {
 
-	// Thêm nhân viên mới
 	public boolean insert(Employee e) {
 		String sql = "INSERT INTO Employee(FullName, Phone, Email, Address, Status) VALUES (?, ?, ?, ?, ?)";
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -24,7 +23,6 @@ public class EmployeeDAO {
 		}
 	}
 
-	// Cập nhật thông tin nhân viên
 	public boolean update(Employee e) {
 		String sql = "UPDATE Employee SET FullName = ?, Phone = ?, Email = ?, Address = ?, Status = ? WHERE EmployeeID = ?";
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -41,8 +39,6 @@ public class EmployeeDAO {
 		}
 	}
 
-	// Xóa nhân viên theo mã (Lưu ý: Thực tế thường dùng "xóa mềm" bằng cách đổi
-	// Status = 0)
 	public boolean delete(int id) {
 		String sql = "DELETE FROM Employee WHERE EmployeeID = ?";
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -54,7 +50,6 @@ public class EmployeeDAO {
 		}
 	}
 
-	// Lấy danh sách toàn bộ nhân viên
 	public List<Employee> selectAll() {
 		List<Employee> list = new ArrayList<>();
 		String sql = "SELECT * FROM Employee";

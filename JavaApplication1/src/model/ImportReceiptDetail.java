@@ -7,11 +7,9 @@ public class ImportReceiptDetail {
 	private int quantity;
 	private double importPrice;
 
-	// Constructor mặc định
 	public ImportReceiptDetail() {
 	}
 
-	// Constructor đầy đủ tham số
 	public ImportReceiptDetail(int detailId, int importId, int productId, int quantity, double importPrice) {
 		this.detailId = detailId;
 		this.importId = importId;
@@ -20,8 +18,6 @@ public class ImportReceiptDetail {
 		this.importPrice = importPrice;
 	}
 
-	// Constructor không có detailId (dùng khi thêm mới vào DB vì detailId là
-	// AUTO_INCREMENT)
 	public ImportReceiptDetail(int importId, int productId, int quantity, double importPrice) {
 		this.importId = importId;
 		this.productId = productId;
@@ -29,7 +25,6 @@ public class ImportReceiptDetail {
 		this.importPrice = importPrice;
 	}
 
-	// Getters and Setters
 	public int getDetailId() {
 		return detailId;
 	}

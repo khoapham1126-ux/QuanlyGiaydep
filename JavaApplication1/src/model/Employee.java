@@ -21,7 +21,6 @@ public class Employee {
 		this.status = status;
 	}
 
-	// Getters and Setters
 	public int getEmployeeId() {
 		return employeeId;
 	}

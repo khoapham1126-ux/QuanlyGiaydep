@@ -56,7 +56,7 @@ public class LoginForm extends JFrame {
 		gbc.weightx = 1.0; // <-- QUAN TRỌNG
 		txtPassword = new JPasswordField(15);
 		txtPassword.setPreferredSize(new Dimension(200, 30));
-		txtPassword.setMinimumSize(new Dimension(200, 30)); // <-- Chốt luôn size tối thiểu
+		txtPassword.setMinimumSize(new Dimension(200, 30)); 
 		pnCenter.add(txtPassword, gbc);
 
 		add(pnCenter, BorderLayout.CENTER);
@@ -69,7 +69,6 @@ public class LoginForm extends JFrame {
 		pnBottom.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
 		add(pnBottom, BorderLayout.SOUTH);
 
-		// Sự kiện
 		btnLogin.addActionListener(e -> login());
 		btnCancel.addActionListener(e -> System.exit(0));
 	}

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReportDAO {
-	// 1. Lấy danh sách sản phẩm bán chạy nhất
 	public List<Object[]> getTopSellingProducts(int top) {
 		List<Object[]> list = new ArrayList<>();
 		// Giả định An dùng bảng InvoiceDetail có ProductID và Quantity
@@ -26,10 +25,8 @@ public class ReportDAO {
 		return list;
 	}
 
-	// 2. Thống kê doanh thu theo ngày trong tháng
 	public double getRevenueByDate(String date) {
 		double total = 0;
-		// Giả định An dùng bảng Invoice có TotalAmount và InvoiceDate
 		String sql = "SELECT SUM(TotalAmount) as Revenue FROM Invoice WHERE DATE(InvoiceDate) = ?";
 		try (Connection conn = DBConnection.getConnection(); PreparedStatement ps = conn.prepareStatement(sql)) {
 			ps.setString(1, date); // Format yyyy-MM-dd

@@ -52,7 +52,7 @@ public class ProductDAO {
                 try (PreparedStatement psInventory = conn.prepareStatement(sqlInventory)) {
                     psInventory.setInt(1, productId);
                     psInventory.setInt(2, p.getQuantity());
-                    psInventory.setInt(3, 5); // ngưỡng tối thiểu mặc định
+                    psInventory.setInt(3, 5); 
                     psInventory.executeUpdate();
                 }
 

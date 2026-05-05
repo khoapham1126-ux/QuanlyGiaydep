@@ -14,7 +14,7 @@ public class ImportReceiptDAO {
 		try (Connection conn = DBConnection.getConnection()) {
 			if (conn == null)
 				return false;
-			conn.setAutoCommit(false); // Bắt đầu Transaction
+			conn.setAutoCommit(false);
 
 			try (PreparedStatement psReceipt = conn.prepareStatement(sqlReceipt, Statement.RETURN_GENERATED_KEYS)) {
 				psReceipt.setInt(1, receipt.getSupplierId());
@@ -50,7 +50,7 @@ public class ImportReceiptDAO {
 						psInventory.executeUpdate();
 					}
 				}
-				conn.commit(); // Thành công thì lưu toàn bộ
+				conn.commit(); 
 				return true;
 			} catch (Exception e) {
 				conn.rollback();
