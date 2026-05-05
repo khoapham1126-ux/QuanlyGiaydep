@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package main;
 
-/**
- *
- * @author My computer
- */
-public class JavaApplication1 {
+import view.LoginForm;
+import javax.swing.SwingUtilities;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+public class JavaApplication1 {
+	public static void main(String[] args) {
+
+		try {
+			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+				if ("Nimbus".equals(info.getName()) || "Windows".equals(info.getName())) {
+					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+					break;
+				}
+			}
+		} catch (Exception ex) {
+			System.out.println("Không thể thiết lập Look and Feel: " + ex.getMessage());
+		}
+
+		SwingUtilities.invokeLater(() -> {
+			LoginForm login = new LoginForm();
+			login.setVisible(true);
+		});
+	}
 }

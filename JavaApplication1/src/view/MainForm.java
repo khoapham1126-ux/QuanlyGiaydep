@@ -1,68 +1,75 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import java.awt.*;
+import javax.swing.*;
 
 public class MainForm extends JFrame {
+	// Các nút chức năng
+	private JButton btnProduct, btnCategory, btnSupplier, btnInventory;
+	private JButton btnEmployee, btnImport, btnReport, btnLogout;
 
-    private JButton btnProduct, btnCategory, btnSupplier, btnInventory, btnExit;
+	public MainForm() {
+		initComponents();
+		setLocationRelativeTo(null);
+	}
 
-    public MainForm() {
-        initComponents();
-        setLocationRelativeTo(null);
-    }
+	private void initComponents() {
+		setTitle("Hệ thống Quản lý Giày dép");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Tắt MainForm là tắt app
+		setSize(800, 500);
+		setLayout(new BorderLayout(10, 10));
 
-    private void initComponents() {
-        setTitle("Hệ thống quản lý cửa hàng giày");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(700, 400);
-        setLayout(new BorderLayout(10, 10));
+		JLabel lblTitle = new JLabel("HỆ THỐNG QUẢN LÝ CỬA HÀNG", SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Arial", Font.BOLD, 26));
+		lblTitle.setForeground(new Color(0, 102, 204));
+		lblTitle.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
+		add(lblTitle, BorderLayout.NORTH);
 
-        JLabel lblTitle = new JLabel("HỆ THỐNG QUẢN LÝ CỬA HÀNG GIÀY", SwingConstants.CENTER);
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
-        lblTitle.setForeground(new Color(0, 102, 204));
-        add(lblTitle, BorderLayout.NORTH);
+		// Chứa các nút bấm
+		JPanel pnCenter = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30));
+		pnCenter.setBorder(BorderFactory.createTitledBorder("Chọn chức năng"));
 
-        JPanel pnCenter = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 30));
-        pnCenter.setBorder(BorderFactory.createTitledBorder("Chức năng chính"));
+		// Khởi tạo các nút
+		btnProduct = new JButton("Quản lý Sản phẩm");
+		btnCategory = new JButton("Quản lý Danh mục");
+		btnSupplier = new JButton("Quản lý Nhà cung cấp");
+		btnInventory = new JButton("Quản lý Tồn kho");
+		btnEmployee = new JButton("Quản lý Nhân viên");
+		btnImport = new JButton("Nhập Kho");
+		btnReport = new JButton("Báo Cáo Thống Kê");
+		btnLogout = new JButton("Đăng xuất");
 
-        btnProduct = new JButton("Quản lý sản phẩm");
-        btnCategory = new JButton("Quản lý loại giày");
-        btnSupplier = new JButton("Quản lý nhà cung cấp");
-        btnInventory = new JButton("Quản lý tồn kho");
-        btnExit = new JButton("Thoát");
+		// Đặt kích thước cho nút
+		Dimension btnSize = new Dimension(200, 45);
+		JButton[] buttons = { btnProduct, btnCategory, btnSupplier, btnInventory, btnEmployee, btnImport, btnReport,
+				btnLogout };
+		for (JButton btn : buttons) {
+			btn.setPreferredSize(btnSize);
+			pnCenter.add(btn);
+		}
 
-        btnProduct.setPreferredSize(new java.awt.Dimension(180, 40));
-        btnCategory.setPreferredSize(new java.awt.Dimension(180, 40));
-        btnSupplier.setPreferredSize(new java.awt.Dimension(180, 40));
-        btnInventory.setPreferredSize(new java.awt.Dimension(180, 40));
-        btnExit.setPreferredSize(new java.awt.Dimension(180, 40));
+		add(pnCenter, BorderLayout.CENTER);
 
-        pnCenter.add(btnProduct);
-        pnCenter.add(btnCategory);
-        pnCenter.add(btnSupplier);
-        pnCenter.add(btnInventory);
-        pnCenter.add(btnExit);
+		// ======= SỰ KIỆN LINK CÁC TRANG =======
+		// Khoa
+		btnProduct.addActionListener(e -> new ProductForm().setVisible(true));
+		btnCategory.addActionListener(e -> new CategoryForm().setVisible(true));
+		btnSupplier.addActionListener(e -> new SupplierForm().setVisible(true));
+		btnInventory.addActionListener(e -> new InventoryForm().setVisible(true));
 
-        add(pnCenter, BorderLayout.CENTER);
+		// Việt
+		btnEmployee.addActionListener(e -> new EmployeeForm().setVisible(true));
+		btnImport.addActionListener(e -> new ImportForm().setVisible(true));
+		btnReport.addActionListener(e -> new ReportForm().setVisible(true));
 
-        btnProduct.addActionListener(e -> new ProductForm().setVisible(true));
-        btnCategory.addActionListener(e -> new CategoryForm().setVisible(true));
-        btnSupplier.addActionListener(e -> new SupplierForm().setVisible(true));
-        btnInventory.addActionListener(e -> new InventoryForm().setVisible(true));
-        btnExit.addActionListener(e -> System.exit(0));
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new MainForm().setVisible(true));
-    }
+		// Đăng xuất:
+		btnLogout.addActionListener(e -> {
+			int confirm = JOptionPane.showConfirmDialog(this, "Bạn có muốn đăng xuất?", "Xác nhận",
+					JOptionPane.YES_NO_OPTION);
+			if (confirm == JOptionPane.YES_OPTION) {
+				new LoginForm().setVisible(true);
+				this.dispose(); // Đóng form hiện tại
+			}
+		});
+	}
 }
